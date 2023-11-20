@@ -11,57 +11,45 @@ Open your terminal and navigate to your workspace. On the command line, type: `g
 
 CD into the new folder and note that there's a readme.md file there. Now everyone is set up to collaborate with this repo.
 
+# Add the Original Story
 
-# Make a Change 
+One teammate, create a poem.txt file in your project folder and paste this lovely poem into that file:
+```
+Roses are red.
+Violets are blue.
+Github is beautiful
+And so are you.
+```
 
-One person, create a story.txt file in your project folder and paste the story text from the bottom of this guide into that file.
-
-Type `git add .` in your terminal (while in the project folder) to have git track your latest changes
+Type `git add .` in your terminal (while in the project folder) to have git track all your latest changes
 
 Type `git commit -m "started story"` to tag this revised version of the project and provide a brief description of changes.
 
-Type `git push origin main`
+Type `git push origin main` to upload these changes to the online repository. Now everyone should be able to see the file on github.
 
-view changes online
-other people: pull from main. view changes locally
+All other teammates, type `git pull origin main` to sync your local files up with the latest version.
 
+# Make a Change
 
-one person: make a branch. update one character's description.
-add, commit and push the branch to origin. view that branch online
-do a pull request
-someone approve the pull request. see changes in main branch.
-everyone pull latest to their local main
+We have just made a change to our code and pushed those directly to our shared repository. But when collaborating, this can get very messy. What we really want to do is make our own **branch** for whatever task we're working on - a separate version of the project that's forked off the main branch. Then we make all our changes in that branch, and when we're finished and we've confirmed that everything is OK, then we merge the branch back into the main branch.
 
-two people: pull latest from main, then make a branch. update one character's description. Then add, commit and push the branch to origin. 
-one person do a pull request and merge it.
-the other person do a pull request. There'll be a conflict. 
-resolve it manually, approve the pull request.
-everyone can pull main.
+One teammate, type `git branch update-rose-color` in the terminal, which will create a new branch. Then type `git checkout update-rose-color` to switch into that branch. Note: you could combine these steps with the single command `git checkout -b update-rose-color`.
 
+Next, replace the word "red" in the first line with "pink" and save the file. In the terminal type `git add .`, then `git commit -m "roses are now pink"`, then `git push origin update-rose-color` to add, commit and then push the changes, still staying within our new branch.
 
+Now, anyone should be able to view the new branch with its changes. Refresh the github page (with the **code** tab selected at the top) and you should have a dropdown with **main** selected. Clicking that dropdown, you can now select the new `update-rose-color` branch to view the files, and click on the story.txt file to see its updated contents. 
 
+Also, at the top of the code overview page, there should be a new message with a green **Compare and Pull Request** button. One teammate (typically whoever made these changes) should click this button to look over all the changes. This page shows a **diff** view, which uses color-coded formatting to compare the differences between the versions. If this looks OK, click **Create Pull Request** to start merging these changes back to the main branch.
 
-### Source text:
-```
-Once upon a time, in the mystical land of Eldoria, a great evil cast its shadow upon the realm. The people lived in fear as dark forces spread, threatening to plunge the entire world into eternal darkness. In response, a party of unlikely heroes gathered, each with their own unique skills and personalities.
+Next, another teammate should review the changes and confirm that these are acceptable before we merge them. In github, there is a **Pull Requests** tab, which should now have a **1** beside the text. Click that, then click on the list item for this update. You can review these changes by clicking on the **Files Changed** tab, which will show the same diff view we saw earlier. But since there are no conflicts, we can just click the **Merge Pull Request** button and then click **Confirm Merge**. 
 
-Sir Cedric the Chivalrous, a knight of noble birth, clad in shining armor and wielding a sword that gleamed with the righteousness of his cause, led the group. His unwavering commitment to justice and the protection of the innocent made him the heart of the party.
+At this point, you can delete this branch with that button. And if you return to the **Code** tab view and select **main** branch, you can see the latest changes are now applied there. Also, any other teammates can type `git pull origin main` to get the latest version on their local copy.
 
-By his side, the sage old wizard, Merlin the Wise, brought centuries of arcane knowledge. His long white beard flowed with the magic that coursed through his veins, and his staff crackled with the power of ancient spells. Merlin's wisdom guided the group through the darkest of times.
+# Create a Conflict
 
-The trickster rogue, Seraphina Shadowheart, a master of stealth and cunning, moved silently in the shadows. With her dagger, she cut through obstacles, and with her quick wit, she outsmarted any foe. Seraphina's skills were essential for gathering information and infiltrating the enemy's lairs.
+Working in branches really helps avoid conflicts, but it can still happen. If two teammates branch around the same time, then one commits some changes and merges, then when the second teammate merges changes, there can be conflicts. 
 
-The party's bard, Lyra Melodious, added a touch of magic to their journey. With her enchanted voice and musical talents, she inspired her comrades and struck fear into the hearts of their enemies. Her words and melodies weaved tales of courage that echoed through the ages.
+Two teammates should each create a new branch. One should name it `make-violets-violet` and the other should name it `make-violets-orange`. Then they should each modify the code accordingly. 
 
-And then there was Alaric Gearspark, the clever artificer with a knack for tinkering. He invented ingenious gadgets and crafted magical artifacts to aid the party. Alaric's love for machinery and knowledge of arcane engineering made him an indispensable member of the team.
+One teammate should add, commit, push and merge just as we did above. Then the next teammate should. When they try to do a pull request, there will be a conflict. Git can't decide which of these changes to use, so we will have to resolve this manually before we can merge it into main. 
 
-Together, this diverse group set forth on a perilous quest to find the legendary Crystal of Radiance, the only artifact capable of dispelling the encroaching darkness. Their journey took them through enchanted forests, treacherous mountains, and mysterious caverns.
-
-Along the way, they encountered vile creatures and cunning adversaries, testing the strength of their fellowship. Sir Cedric's sword clashed with the minions of darkness, Merlin's spells illuminated the shadows, Seraphina's cunning outsmarted traps, Lyra's melodies inspired hope, and Alaric's gadgets provided ingenious solutions to unforeseen challenges.
-
-As the party neared the heart of the evil's domain, they faced their greatest challenge yet – the Dark Sorcerer, a malevolent being who sought to use the power of the Crystal of Radiance for his own twisted purposes. A fierce battle ensued, with the heroes combining their strengths to overcome the sorcerer's dark magic.
-
-In the end, it was Sir Cedric who delivered the final blow, his sword infused with the light of the crystal. The darkness retreated, and the land of Eldoria was saved. The party of heroes stood triumphant, their unity and diversity proving to be the key to victory.
-
-The people of Eldoria celebrated the return of light and peace, and the heroes' names became legendary. Sir Cedric, Merlin, Seraphina, Lyra, and Alaric, unlikely companions brought together by destiny, had not only defeated the forces of darkness but had also forged bonds that would last a lifetime. And so, their adventures continued, as they set their sights on new horizons, ready to face whatever challenges awaited them in the magical realms of Eldoria.
-```
